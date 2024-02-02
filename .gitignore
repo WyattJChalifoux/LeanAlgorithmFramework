@@ -2,3 +2,4 @@
 /.idea/
 /backtests/
 /research.ipynb
+*.pyc
