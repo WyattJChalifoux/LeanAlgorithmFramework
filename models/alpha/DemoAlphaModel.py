@@ -62,7 +62,7 @@ class DemoAlphaModel(AlphaModel):
         return insights
 
     def OnSecuritiesChanged(self, algorithm, changes):
-        '''Event fired each time the we add/remove securities from the data feed
+        '''Event fired each time we add/remove securities from the data feed
         Args:
             algorithm: The algorithm instance that experienced the change in securities
             changes: The security additions and removals from the algorithm'''
@@ -103,11 +103,11 @@ class SymbolData:
         self.Slow = ExponentialMovingAverage(security.Symbol, slowPeriod,
                                              ExponentialMovingAverage.SmoothingFactorDefault(slowPeriod))
 
-        algorithm.RegisterIndicator(security.Symbol, self.Fast, self.FastConsolidator);
-        algorithm.RegisterIndicator(security.Symbol, self.Slow, self.SlowConsolidator);
+        algorithm.RegisterIndicator(security.Symbol, self.Fast, self.FastConsolidator)
+        algorithm.RegisterIndicator(security.Symbol, self.Slow, self.SlowConsolidator)
 
-        algorithm.WarmUpIndicator(security.Symbol, self.Fast, resolution);
-        algorithm.WarmUpIndicator(security.Symbol, self.Slow, resolution);
+        algorithm.WarmUpIndicator(security.Symbol, self.Fast, resolution)
+        algorithm.WarmUpIndicator(security.Symbol, self.Slow, resolution)
 
         # True if the fast is above the slow, otherwise false.
         # This is used to prevent emitting the same signal repeatedly

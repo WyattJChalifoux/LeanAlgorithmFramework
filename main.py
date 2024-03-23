@@ -2,6 +2,7 @@
 from AlgorithmImports import *
 
 from models.alpha.DemoAlphaModel import DemoAlphaModel
+from models.alpha.PytorchFeedForwardModel import PytorchFeedForwardModel
 from models.universe.DemoUniverseSelectionModel import DemoUniverseSelectionModel
 
 
@@ -13,7 +14,7 @@ class AlgorithmFrameworkDemo(QCAlgorithm):
         self.UniverseSettings.Resolution = Resolution.Daily
 
         self.SetStartDate(2010, 10, 1)  # Set Start Date
-        self.SetEndDate(2020, 10, 1)  # Set End Date
+        self.SetEndDate(2011, 10, 5)  # Set End Date
         self.SetCash(30000)  # Set Strategy Cash
 
         symbols = [
@@ -39,7 +40,8 @@ class AlgorithmFrameworkDemo(QCAlgorithm):
         ]
 
         self.SetUniverseSelection(DemoUniverseSelectionModel(symbols))
-        self.AddAlpha(DemoAlphaModel())
+        # self.AddAlpha(DemoAlphaModel())
+        self.AddAlpha(PytorchFeedForwardModel(self, "SPY"))
         # DemoPortfolioModel is WIP and currently unused
         self.SetPortfolioConstruction(MeanVarianceOptimizationPortfolioConstructionModel())
         self.SetExecution(StandardDeviationExecutionModel(resolution=Resolution.Daily))
